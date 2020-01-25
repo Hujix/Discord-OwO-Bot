@@ -9,13 +9,11 @@ import OwO from '../../owo'
 
 let timer: NodeJS.Timeout | undefined
 
-export default async function(main: OwO) {
+export default (main: OwO) => {
   // If there was a previous attempt to restart then reset it
   if (timer) clearTimeout(timer)
 
   const time = main.clusterID * 60000
   console.log(`ending ${main.clusterID} in ${time}ms`)
-  timer = setTimeout(function() {
-    process.exit(0)
-  }, time)
+  timer = setTimeout(() => process.exit(0), time)
 }
