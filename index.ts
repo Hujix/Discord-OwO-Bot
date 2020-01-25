@@ -67,7 +67,7 @@ const startup = async () => {
 
     const auth = debug ? scuttesterauth : owoauth
     // Start sharder
-    new Sharder('Bot ' + auth.token, config.sharder.path, {
+    new Sharder(`Bot ${auth.token}`, config.sharder.path, {
       name: config.sharder.name,
       clientOptions: config.eris.clientOptions,
       debug: true,
