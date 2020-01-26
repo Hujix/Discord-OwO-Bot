@@ -17,7 +17,7 @@ import owoauth from './tokens/owo-auth.json'
 import config from './src/data/config.json'
 import fetchInit from './utils/fetchInit'
 import resetBot from './utils/resetBot'
-import { milliseconds } from './lib/enums/time.js'
+import { milliseconds } from './src/utils/constants/enums/time.js'
 // Eris-Sharder
 // TODO: See if we can get typings PRd to eris sharder
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
