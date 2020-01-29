@@ -5,16 +5,15 @@
  * For more information, see README.md and LICENSE
  */
 
-const debug = false
-
-import tracer from 'dd-trace'
-if (!debug) tracer.init()
-
 // Grab tokens and secret files
 import scuttesterauth from './tokens/scuttester-auth.json'
 import owoauth from './tokens/owo-auth.json'
-// Config file
 import config from './src/data/config.json'
+
+import tracer from 'dd-trace'
+if (!config.debug) tracer.init()
+
+// Config file
 import fetchInit from './utils/fetchInit'
 import resetBot from './utils/resetBot'
 import { milliseconds } from './src/utils/constants/enums/time.js'
@@ -49,7 +48,7 @@ const startup = async () => {
     let firstShardID = 0
     let lastShardID = 0
     //determine how many shards we will need for this manager
-    if (!debug && cluster.isMaster) {
+    if (!config.debug && cluster.isMaster) {
       const result = await fetchInit()
       shards = result.shards
       firstShardID = result.firstShardID
@@ -57,7 +56,7 @@ const startup = async () => {
     }
     // How many clusters we will have
     let clusters = Math.ceil(shards / 5)
-    if (debug) {
+    if (config.debug) {
       shards = 4
       firstShardID = 0
       lastShardID = shards - 1
@@ -65,9 +64,9 @@ const startup = async () => {
     }
     console.log(`Creating shards ${firstShardID}~${lastShardID} out of ${shards} total shards!`)
 
-    const auth = debug ? scuttesterauth : owoauth
+    const auth = config.debug ? scuttesterauth : owoauth
     // Start sharder
-    new Sharder(`Bot ${auth.token}`, config.sharder.path, {
+    return new Sharder(`Bot ${auth.token}`, config.sharder.path, {
       name: config.sharder.name,
       clientOptions: config.eris.clientOptions,
       debug: true,
