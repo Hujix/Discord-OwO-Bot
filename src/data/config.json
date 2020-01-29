@@ -1,6 +1,8 @@
 {
+  "debug": false,
+
   "sharder": {
-    "path": "/src/owo.js",
+    "path": "/production/src/owo.js",
     "name": "OwO Bot"
   },
 

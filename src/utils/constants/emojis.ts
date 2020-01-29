@@ -1,5 +1,7 @@
 export default {
-  timer: '⏱',
+  blank: '<:blank:427371936482328596>',
+  lift: '🙇',
   skull: '☠',
-  lift: '🙇'
+  timer: '⏱',
+  owo: '<:owo:448256976141549568>'
 }
