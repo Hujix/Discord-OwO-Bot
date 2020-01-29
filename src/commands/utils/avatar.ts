@@ -42,5 +42,8 @@ AvatarCommand.run = (message, args: AvatarArgs) => {
       }
     ]
   }
+
   message.channel.createMessage({ embed })
 }
+
+module.exports = AvatarCommand
