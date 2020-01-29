@@ -8,15 +8,21 @@
 const whitelist = ['409959187229966337', '420104212895105044', '552384921914572802']
 import { Message } from 'eris'
 import Registry from '../registry'
+import config from '../data/config.json'
 
 // Fired when a message is created
-export default (message: Message) => {
+const handle = (message: Message) => {
   // Ignore if bot
   if (message.author.bot) return
   // Ignore guilds if in debug mode
-  else if (OwO.debug && message.guildID && !whitelist.includes(message.guildID)) return
+  else if (config.debug && message.guildID && !whitelist.includes(message.guildID)) return
 
   return Registry.handler.run(message, 3)
   // TODO: XP on command usage
   // levels.giveXP(message)
+}
+
+module.exports = {
+  handle,
+  name: 'messageCreate'
 }
