@@ -11,8 +11,6 @@ const AvatarCommand = new Command({
   arguments: [
     {
       example: '@OwO',
-      key: 'user',
-      name: 'user',
       type: 'user',
       defaultValue: ArgumentDefault.Author
     }
@@ -37,7 +35,7 @@ AvatarCommand.run = (message, args: AvatarArgs) => {
     image: { url: args.user.dynamicAvatarURL(undefined, 1024) },
     fields: [
       {
-        name: `${userTag(args.user)}${isBot}\`${member.status}\``,
+        name: `${userTag(args.user)}${isBot} \`${member.status}\``,
         value: `${nickname}\`ID: ${member.id}\`\n\`RoleColor: #${memberHighestRole.color.toString(16).toUpperCase()}\``
       }
     ]
