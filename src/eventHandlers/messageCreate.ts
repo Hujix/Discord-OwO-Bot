@@ -11,13 +11,15 @@ import Registry from '../registry'
 import config from '../data/config.json'
 
 // Fired when a message is created
-const handle = (message: Message) => {
+const handle = async (message: Message) => {
   // Ignore if bot
   if (message.author.bot) return
   // Ignore guilds if in debug mode
   else if (config.debug && message.guildID && !whitelist.includes(message.guildID)) return
 
-  return Registry.handler.run(message, 3)
+  const result = await Registry.handler.run(message, 3)
+
+  console.log('command ran', result)
   // TODO: XP on command usage
   // levels.giveXP(message)
 }
