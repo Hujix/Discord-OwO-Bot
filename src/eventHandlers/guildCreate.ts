@@ -3,9 +3,12 @@
  * Copyright (C) 2019 Christopher Thai
  * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
  * For more information, see README.md and LICENSE
-  */
+ */
 
-// When guild is available
-exports.handle = function(guild){
-	if(!this.debug) this.logger.increment("guildcount");
+import config from '../data/config.json'
+import { datadog } from '../utils/datadog.js'
+
+module.exports = {
+  handle: () => (config.debug ? datadog.increment('guildcount') : undefined),
+  name: 'guildCreate'
 }
