@@ -10,7 +10,7 @@ import { StatsD } from 'node-dogstatsd'
 
 const log = new StatsD('localhost')
 
-export default {
+export const datadog = {
   /** Increases the value in the datadog stats by 1 */
   increment: (name: string, tags?: string[]) => log.increment(`owo.${name}`, undefined, tags),
   /** Decreases the value in the datadog stats by 1 */
